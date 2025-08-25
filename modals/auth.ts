@@ -22,8 +22,10 @@ export async function login(page: Page) {
       .first();
 
     if ((await emailInput.isVisible()) && (await passwordInput.isVisible())) {
-      await emailInput.fill("test@example.com");
-      await passwordInput.fill("testpassword123");
+      const email = process.env.BASIC_USER || process.env.BASIC_AUTH_USERNAME || "forvana-dev";
+      const password = process.env.BASIC_PASS || process.env.BASIC_AUTH_PASSWORD || "devFRV2025!";
+      await emailInput.fill(email);
+      await passwordInput.fill(password);
 
       const submitButton = page
         .locator(

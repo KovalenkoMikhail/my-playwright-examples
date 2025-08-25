@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "ui": "set PWTEST_UI_PORT=9323&& set PLAYWRIGHT_HOST=127.0.0.1&& npx playwright test --ui | cat",
+    "ui": "npx playwright test --ui --ui-port=9323 --ui-host=127.0.0.1",
     "proxy": "tsx proxy/proxy-server.ts",
     "ui:proxy": "npm-run-all --parallel proxy ui"
   },

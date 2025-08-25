@@ -22,16 +22,14 @@ export async function login(page: Page) {
       .first();
 
     if ((await emailInput.isVisible()) && (await passwordInput.isVisible())) {
-      const email = process.env.BASIC_USER || process.env.BASIC_AUTH_USERNAME || "forvana-dev";
-      const password = process.env.BASIC_PASS || process.env.BASIC_AUTH_PASSWORD || "devFRV2025!";
+      const email = process.env.BASIC_USER || process.env.BASIC_AUTH_USERNAME || "preprodtesthopa47@proton.me";
+      const password = process.env.BASIC_PASS || process.env.BASIC_AUTH_PASSWORD || "tiliTILI123$";
       await emailInput.fill(email);
       await passwordInput.fill(password);
 
       const submitButton = page
-        .locator(
-          'button[type="submit"], button:has-text("Login"), input[type="submit"]'
-        )
-        .first();
+        .locator("//button[.='Login']")
+        .nth(1);
       await submitButton.click();
 
       // Ждем успешной авторизации

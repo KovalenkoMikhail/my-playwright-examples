@@ -1,29 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
-import { getStorageStatePath } from "./utils/getCredentials";
+import { resolveBasicAuth } from "./utils/constants";
 
-// Ensure Playwright UI mode binds to IPv4 localhost with a stable port when running `npx playwright test --ui`
-// Set multiple possible env var names used across Playwright versions if not already defined by user
-if (!process.env.PW_TEST_UI_HOST && !process.env.PWTEST_UI_HOST && !process.env.PLAYWRIGHT_UI_HOST && !process.env.PLAYWRIGHT_HOST) {
-  process.env.PW_TEST_UI_HOST = "127.0.0.1";
-  process.env.PWTEST_UI_HOST = "127.0.0.1";
-  process.env.PLAYWRIGHT_UI_HOST = "127.0.0.1";
-  process.env.PLAYWRIGHT_HOST = "127.0.0.1";
-}
-if (!process.env.PW_TEST_UI_PORT && !process.env.PWTEST_UI_PORT && !process.env.PLAYWRIGHT_UI_PORT) {
-  process.env.PW_TEST_UI_PORT = "9323";
-  process.env.PWTEST_UI_PORT = "9323";
-  process.env.PLAYWRIGHT_UI_PORT = "9323";
-}
-
-// Default basic auth credentials for non-production unless explicitly provided.
-if (
-  !process.env.BASIC_USER &&
-  !process.env.BASIC_PASS &&
-  (process.env.ENV || "development") !== "production"
-) {
-  process.env.BASIC_USER = "forvana-dev";
-  process.env.BASIC_PASS = "devFRV2025!";
-}
+// Minimal IPv4 enforcement for VPNs blocking ::1
 
 // Environment variable configuration for basic authentication
 
@@ -40,6 +18,7 @@ if (
  */
 export default defineConfig({
   testDir: "./tests",
+  testMatch: ["**/*.spec.ts"],
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -55,15 +34,7 @@ export default defineConfig({
   use: {
     baseURL: process.env.BASE_URL || "https://ppd01-www.hopa.com/en-ca",
     ignoreHTTPSErrors: true,
-    httpCredentials:
-      process.env.BASIC_USER || process.env.BASIC_PASS || process.env.BASIC_AUTH_USERNAME || process.env.BASIC_AUTH_PASSWORD
-        ? {
-            username:
-              process.env.BASIC_USER || process.env.BASIC_AUTH_USERNAME || "forvana-dev",
-            password:
-              process.env.BASIC_PASS || process.env.BASIC_AUTH_PASSWORD || "devFRV2025!",
-          }
-        : undefined,
+    httpCredentials: resolveBasicAuth(),
     proxy:
       process.env.HTTPS_PROXY || process.env.HTTP_PROXY
         ? {
@@ -85,19 +56,9 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: "setup",
-      testMatch: /.*\.setup\.ts/,
-    },
-    {
       name: "chromium",
-      dependencies: ["setup"],
       use: {
         ...devices["Desktop Chrome"],
-        storageState: getStorageStatePath(
-          process.env.TARGET_ENV,
-          process.env.TARGET_BRAND,
-          process.env.TARGET_JURISDICTION
-        ),
       },
     },
 

@@ -3,12 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "ui": "set PWTEST_UI_PORT=9323&& set PLAYWRIGHT_HOST=127.0.0.1&& npx playwright test --ui | cat",
+    "proxy": "tsx proxy/proxy-server.ts",
+    "ui:proxy": "npm-run-all --parallel proxy ui"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.55.0",
-    "@types/node": "^24.3.0"
+    "@types/node": "^24.3.0",
+    "express": "^4.19.2",
+    "http-proxy-middleware": "^3.0.0",
+    "npm-run-all": "^4.1.5",
+    "tsx": "^4.19.2"
   }
 }

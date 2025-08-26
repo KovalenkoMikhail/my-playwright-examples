@@ -7,14 +7,15 @@ import { TARGET_ENV, TARGET_BRAND, TARGET_JURISDICTION } from "../utils/constant
 
 const storagePath = getStorageStatePath(TARGET_ENV, TARGET_BRAND, TARGET_JURISDICTION);
 
-test("login user and save storageState", async ({ page }) => {
+
+test("Get root for site and save storageState", async ({ page }) => {
+
   await homepage.openHomePage(page);
   await cookies.acceptCookiesIfVisible(page);
-  await auth.login(page);
 
   await page.context().storageState({ path: storagePath });
 });
-test("login13212 user and save storageState", async ({ page }) => {
+test("login to site and save storageState", async ({ page }) => {
 
   await homepage.openHomePage(page);
   await cookies.acceptCookiesIfVisible(page);

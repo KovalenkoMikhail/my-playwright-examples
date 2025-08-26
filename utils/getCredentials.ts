@@ -30,9 +30,11 @@ export function getLoginData(): Credentials {
 	throw new Error("No credentials could be resolved for the current environment");
 }
 
-export function getStorageStatePath(env?: string, brand?: string, jurisdiction?: string): string {
+export function getStorageStatePath(env?: string, brand?: string, jurisdiction?: string, label?: string): string {
 	const e = (env || process.env.TARGET_ENV || "ppd01").toLowerCase();
 	const b = (brand || process.env.TARGET_BRAND || "hopa").toLowerCase();
 	const j = (jurisdiction || process.env.TARGET_JURISDICTION || "mga").toLowerCase();
-	return `test-results/storage-state-${e}-${b}-${j}.json`;
+	// For root login or auth login
+	const suffix = label ? `-${label.toLowerCase()}` : "";
+	return `test-results/storage-state-${e}-${b}-${j}${suffix}.json`;
 }

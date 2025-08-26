@@ -5,7 +5,8 @@ import { test } from "@playwright/test";
 import { getStorageStatePath } from "../utils/getCredentials";
 import { TARGET_ENV, TARGET_BRAND, TARGET_JURISDICTION } from "../utils/constants";
 
-const storagePath = getStorageStatePath(TARGET_ENV, TARGET_BRAND, TARGET_JURISDICTION);
+const rootStoragePath = getStorageStatePath(TARGET_ENV, TARGET_BRAND, TARGET_JURISDICTION, "root");
+const authStoragePath = getStorageStatePath(TARGET_ENV, TARGET_BRAND, TARGET_JURISDICTION, "auth");
 
 
 test("Get root for site and save storageState", async ({ page }) => {
@@ -13,7 +14,7 @@ test("Get root for site and save storageState", async ({ page }) => {
   await homepage.openHomePage(page);
   await cookies.acceptCookiesIfVisible(page);
 
-  await page.context().storageState({ path: storagePath });
+  await page.context().storageState({ path: rootStoragePath });
 });
 test("login to site and save storageState", async ({ page }) => {
 
@@ -21,5 +22,5 @@ test("login to site and save storageState", async ({ page }) => {
   await cookies.acceptCookiesIfVisible(page);
   await auth.login(page);
 
-  await page.context().storageState({ path: storagePath });
+  await page.context().storageState({ path: authStoragePath });
 });

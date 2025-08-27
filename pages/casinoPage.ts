@@ -22,7 +22,7 @@ class CasinoPage {
     await expect(this.page).toHaveURL(/.*\/casino\/popular/);
   }
 
-  async goToLobby() {
+  async subNavigationgoToLobby() {
     await this.page.getByRole("link", { name: "Lobby" }).click();
   }
 }

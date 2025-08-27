@@ -24,7 +24,7 @@ test.describe("guest context (root storageState)", () => {
 
   test("sub-navigation go to Popular", async ({ page }) => {
     const casinoPage = new CasinoPage(page);
-    await homepage.openCasinoPage(page);
+    await page.goto("/casino");
     await casinoPage.subNavigationGoToPopular();
   });
 });

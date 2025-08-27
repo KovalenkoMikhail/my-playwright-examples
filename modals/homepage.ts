@@ -5,3 +5,8 @@ export async function openHomePage(page: Page) {
   await page.goto(url);
   await page.waitForLoadState("domcontentloaded");
 }
+export async function openCasinoPage(page: Page) {
+  const urlCasino = process.env.BASE_URL + "/casino";
+  await page.goto(urlCasino);
+  await page.waitForLoadState("domcontentloaded");
+}

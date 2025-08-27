@@ -29,3 +29,5 @@ out/
 
 # Coverage
 coverage/
+# Ignore Playwright workflow
+playwright.yml

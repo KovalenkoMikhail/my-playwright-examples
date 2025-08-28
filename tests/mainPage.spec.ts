@@ -3,12 +3,7 @@ import * as homepage from "../modals/homepage";
 import * as cookies from "../modals/components/cookies";
 import * as auth from "../modals/auth";
 import { getStorageStatePath } from "../utils/getCredentials";
-import {
-  TARGET_ENV,
-  TARGET_BRAND,
-  TARGET_JURISDICTION,
-} from "../utils/constants";
-import CasinoPage from "../pages/casinoPage";
+
 import MainPage from "../pages/mainPage";
 import { beforeEach } from "node:test";
 
@@ -25,6 +20,9 @@ test.describe("guest context (root storageState)", () => {
 
   test("header open casino Page", async ({ page }) => {
     const mainPage = new MainPage(page);
+
+    await cookies.acceptCookiesIfVisible(page);
+
     await homepage.openHomePage(page);
     await mainPage.headerOpenCasino();
   });

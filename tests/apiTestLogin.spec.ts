@@ -211,7 +211,7 @@ test.describe("myFirstApiRequest", () => {
         },
         {
           name: "af_id",
-          value: "d6950ed5-af54-40d2-9c73-f632a72b3c85-p",
+          value: "d6950ed5-af54-40d2-9c73-f632a72b3c85-p", //
           domain: ".appsflyer.com",
           path: "/",
           expires: -1,

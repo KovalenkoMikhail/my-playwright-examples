@@ -19,4 +19,7 @@ test.describe("Login Form", () => {
   test("Reset Password", async ({ page }) => {
     await loginPage.resetPassword(page);
   });
+  test("Open Dialog window", async ({ page }) => {
+    await loginPage.openDialog(page);
+  });
 });

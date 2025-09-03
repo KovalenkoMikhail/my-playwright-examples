@@ -6,7 +6,7 @@ import * as withdrawPage from "../pages/withdrawPage";
 
 import { beforeEach } from "node:test";
 
-test.describe("Login Form", () => {
+test.describe("Withdraw", () => {
   test.use({
     storageState: getStorageStatePath(undefined, undefined, undefined, "auth"),
   });
@@ -18,5 +18,13 @@ test.describe("Login Form", () => {
 
   test("Change Password", async ({ page }) => {
     await withdrawPage.changePassword(page);
+  });
+
+  test("Check Hide Button", async ({ page }) => {
+    await withdrawPage.checkHideButton(page);
+  });
+  test("Close modal CHANGE PASSWORD", async ({ page }) => {
+    await withdrawPage.openModalChangePassword(page);
+    await withdrawPage.closeModalChangePassword(page);
   });
 });

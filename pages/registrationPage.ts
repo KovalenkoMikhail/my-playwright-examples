@@ -1,0 +1,194 @@
+import { Page, expect } from "@playwright/test";
+
+export async function firstRegistrationStep(page: Page) {
+  await page.getByRole("button", { name: "Join", exact: true }).click();
+  await page.getByRole("button", { name: "Skip" }).click();
+  await page
+    .getByRole("textbox", { name: "Email" })
+    .fill("testemail@test.test");
+  await page.getByRole("textbox", { name: "Username" }).fill("WHGTestYellow");
+  await page.getByRole("textbox", { name: "Password" }).fill("ThisIsPassword@");
+  await page.getByRole("button", { name: "Create account" }).click();
+  await expect(
+    await page.getByRole("tab", { name: "Step 1 completed" })
+  ).toBeVisible();
+}
+
+export async function secondRegistrationStep(page: Page) {
+  await page.getByRole("combobox", { name: "Title" }).click();
+  await page.getByRole("option", { name: "Mr." }).click();
+  await page.getByRole("textbox", { name: "First name" }).fill("testAuto");
+  await page
+    .getByRole("textbox", { name: "Last name" })
+    .fill("WHGTestLastNane");
+
+  await page
+    .locator("div")
+    .filter({ hasText: /^Date of birth$/ })
+    .getByLabel("Open")
+    .click();
+  await page.getByRole("option", { name: "2007" }).click();
+
+  await page.getByRole("combobox", { name: "MM" }).click();
+  await page.getByRole("option", { name: "Jan" }).click();
+
+  await page.getByRole("combobox", { name: "DD", exact: true }).click();
+  await page.getByRole("option", { name: "1", exact: true }).click();
+
+  await page
+    .getByRole("textbox", { name: "Phone number" })
+    .fill("70 0090 0123");
+
+  await page
+    .getByRole("combobox", { name: "Address" })
+    .fill("Sherlock Holmes Museum 221B");
+
+  await page
+    .getByRole("textbox", { name: "Apartment, suite, etc. (" })
+    .fill("221B Baker Street");
+
+  await page.getByRole("textbox", { name: "City" }).fill("London");
+  await page.getByRole("textbox", { name: "ZIP code" }).fill("123441244");
+
+  await page.getByRole("button", { name: "Continue" }).click();
+  await expect(
+    await page.getByRole("tab", { name: "Step 2 completed" })
+  ).toBeVisible();
+}
+
+export async function thirdRegistrationStep(page: Page) {
+  await page
+    .getByText(
+      "Receive exclusive bonuses & promotional offersYou can change your marketing"
+    )
+    .isVisible();
+  await page
+    .getByText(
+      "Receive exclusive bonuses & promotional offersYou can change your marketing"
+    )
+    .click();
+  await expect(
+    await page.getByText("How would you like to receive")
+  ).toBeVisible();
+  await page.getByRole("checkbox", { name: "Check all" }).click();
+  // check check-boxes Hopa Casino
+  await expect(
+    await page.locator(
+      "//span[@data-cy='RegisterPage_MarketingStep_MarketingPreferencesCheckbox_brandMarketing_email' and contains(@class, 'Mui-checked')]"
+    )
+  ).toBeVisible();
+  await expect(
+    await page.locator(
+      "//span[@data-cy='RegisterPage_MarketingStep_MarketingPreferencesCheckbox_brandMarketing_sms' and contains(@class, 'Mui-checked')]"
+    )
+  ).toBeVisible();
+  await expect(
+    await page.locator(
+      "//span[@data-cy='RegisterPage_MarketingStep_MarketingPreferencesCheckbox_brandMarketing_phone' and contains(@class, 'Mui-checked')]"
+    )
+  ).toBeVisible();
+  await expect(
+    await page.locator(
+      "//span[@data-cy='RegisterPage_MarketingStep_MarketingPreferencesCheckbox_brandMarketing_post' and contains(@class, 'Mui-checked')]"
+    )
+  ).toBeVisible();
+  // check check-boxes Partner Casinos
+  await expect(
+    await page.locator(
+      "//span[@data-cy='RegisterPage_MarketingStep_MarketingPreferencesCheckbox_crossMarketing_email' and contains(@class, 'Mui-checked')]"
+    )
+  ).toBeVisible();
+  await expect(
+    await page.locator(
+      "//span[@data-cy='RegisterPage_MarketingStep_MarketingPreferencesCheckbox_crossMarketing_sms' and contains(@class, 'Mui-checked')]"
+    )
+  ).toBeVisible();
+  await expect(
+    await page.locator(
+      "//span[@data-cy='RegisterPage_MarketingStep_MarketingPreferencesCheckbox_crossMarketing_phone' and contains(@class, 'Mui-checked')]"
+    )
+  ).toBeVisible();
+  await expect(
+    await page.locator(
+      "//span[@data-cy='RegisterPage_MarketingStep_MarketingPreferencesCheckbox_crossMarketing_post' and contains(@class, 'Mui-checked')]"
+    )
+  ).toBeVisible();
+  // check check-boxes Hopa Sports
+  await expect(
+    await page.locator(
+      "//span[@data-cy='RegisterPage_MarketingStep_MarketingPreferencesCheckbox_sportsBrandMarketing_email' and contains(@class, 'Mui-checked')]"
+    )
+  ).toBeVisible();
+  await expect(
+    await page.locator(
+      "//span[@data-cy='RegisterPage_MarketingStep_MarketingPreferencesCheckbox_sportsBrandMarketing_sms' and contains(@class, 'Mui-checked')]"
+    )
+  ).toBeVisible();
+  await expect(
+    await page.locator(
+      "//span[@data-cy='RegisterPage_MarketingStep_MarketingPreferencesCheckbox_sportsBrandMarketing_phone' and contains(@class, 'Mui-checked')]"
+    )
+  ).toBeVisible();
+  await expect(
+    await page.locator(
+      "//span[@data-cy='RegisterPage_MarketingStep_MarketingPreferencesCheckbox_sportsBrandMarketing_post' and contains(@class, 'Mui-checked')]"
+    )
+  ).toBeVisible();
+  // check check-boxes Partner Sports
+  await expect(
+    await page.locator(
+      "//span[@data-cy='RegisterPage_MarketingStep_MarketingPreferencesCheckbox_sportsCrossMarketing_email' and contains(@class, 'Mui-checked')]"
+    )
+  ).toBeVisible();
+  await expect(
+    await page.locator(
+      "//span[@data-cy='RegisterPage_MarketingStep_MarketingPreferencesCheckbox_sportsCrossMarketing_sms' and contains(@class, 'Mui-checked')]"
+    )
+  ).toBeVisible();
+  await expect(
+    await page.locator(
+      "//span[@data-cy='RegisterPage_MarketingStep_MarketingPreferencesCheckbox_sportsCrossMarketing_phone' and contains(@class, 'Mui-checked')]"
+    )
+  ).toBeVisible();
+  await expect(
+    await page.locator(
+      "//span[@data-cy='RegisterPage_MarketingStep_MarketingPreferencesCheckbox_sportsCrossMarketing_post' and contains(@class, 'Mui-checked')]"
+    )
+  ).toBeVisible();
+
+  await page.getByText("I accept the terms, funds and").isVisible();
+
+  await page
+    .getByRole("checkbox", { name: "I accept the terms, funds and" })
+    .check();
+
+  await expect(
+    await page.getByText("I accept the terms, funds and")
+  ).toHaveValue("true");
+}
+export async function goToRegistration(page: Page) {
+  await page.getByRole("button", { name: "Join", exact: true }).click();
+  await page.getByRole("button", { name: "Skip" }).click();
+}
+
+export async function createAccountWithEmptyInputFirstStep(page: Page) {
+  await page.getByRole("button", { name: "Create account" }).click();
+
+  await expect(
+    await page.locator("#email").getByText("This field is required.")
+  ).toBeVisible();
+  await expect(
+    await page.locator("#username").getByText("This field is required.")
+  ).toBeVisible();
+
+  await expect(await page.getByText("At least 8 characters")).toBeVisible();
+  await expect(
+    await page.getByText("At least 1 uppercase letter")
+  ).toBeVisible();
+  await expect(
+    await page.getByText("At least 1 special sign from")
+  ).toBeVisible();
+  await expect(
+    await page.getByText("Cannot be the same as email")
+  ).toBeVisible();
+}

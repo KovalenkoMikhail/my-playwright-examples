@@ -1,8 +1,6 @@
 import { Page, expect } from "@playwright/test";
 
 export async function firstRegistrationStep(page: Page) {
-  await page.getByRole("button", { name: "Join", exact: true }).click();
-  await page.getByRole("button", { name: "Skip" }).click();
   await page
     .getByRole("textbox", { name: "Email" })
     .fill("testemail@test.test");
@@ -190,5 +188,46 @@ export async function createAccountWithEmptyInputFirstStep(page: Page) {
   ).toBeVisible();
   await expect(
     await page.getByText("Cannot be the same as email")
+  ).toBeVisible();
+}
+
+export async function createAccWithoutPass(page: Page) {
+  await page
+    .getByRole("textbox", { name: "Email" })
+    .fill("testemail@test.test");
+  await page.getByRole("textbox", { name: "Username" }).fill("WHGTestYellow");
+
+  await page.getByRole("button", { name: "Create account" }).click();
+  await expect(
+    await page.getByText("At least 8 characters").getByTestId("CloseIcon")
+  ).toBeVisible();
+
+  await expect(
+    await page.getByText("At least 1 uppercase letter").getByTestId("CloseIcon")
+  ).toBeVisible();
+
+  await expect(
+    await page
+      .getByText("At least 1 special sign from")
+      .getByTestId("CloseIcon")
+  ).toBeVisible();
+}
+
+export async function createWithPassEqualEmail(page: Page) {
+  await page
+    .getByRole("textbox", { name: "Email" })
+    .fill("testemail@test.test");
+  await page.getByRole("textbox", { name: "Username" }).fill("WHGTestYellow");
+  await page
+    .getByRole("textbox", { name: "Password" })
+    .fill("testemail@test.test");
+
+  await page.getByRole("button", { name: "Create account" }).click();
+
+  await expect(
+    await page.getByText("Cannot be the same as email").getByTestId("CloseIcon")
+  ).toBeVisible();
+  await expect(
+    await page.getByRole("tab", { name: "Step 1 current" })
   ).toBeVisible();
 }

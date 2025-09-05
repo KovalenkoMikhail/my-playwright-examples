@@ -17,12 +17,27 @@ test.describe("Registration form", () => {
   });
 
   test("Registration without Welcome Offers", async ({ page }) => {
+    await registrationPage.goToRegistration(page);
     await registrationPage.firstRegistrationStep(page);
     await registrationPage.secondRegistrationStep(page);
     await registrationPage.thirdRegistrationStep(page);
   });
-  test("Create account with empty input // 1st step", async ({ page }) => {
+  test("Create account with empty input // 1 step", async ({ page }) => {
     await registrationPage.goToRegistration(page);
     await registrationPage.createAccountWithEmptyInputFirstStep(page);
   });
+
+  test("Create account without pass // 1 step", async ({ page }) => {
+    await registrationPage.goToRegistration(page);
+    await registrationPage.createAccWithoutPass(page);
+  });
+
+  test("Create account with pass equal email // 1 step", async ({ page }) => {
+    await registrationPage.goToRegistration(page);
+    await registrationPage.createWithPassEqualEmail(page);
+  });
+  // test("Create account without email // 1 step", async ({ page }) => {
+  //   await registrationPage.goToRegistration(page);
+  //   await registrationPage.createAccWithoutPass(page);
+  // });
 });

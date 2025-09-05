@@ -231,3 +231,101 @@ export async function createWithPassEqualEmail(page: Page) {
     await page.getByRole("tab", { name: "Step 1 current" })
   ).toBeVisible();
 }
+
+export async function showPass(page: Page) {
+  await page.getByRole("button", { name: "Show password" }).click();
+
+  await expect(
+    await page.getByRole("button", { name: "Hide password" })
+  ).toBeVisible();
+}
+export async function elements1StepRegistration(page: Page) {
+  await expect(
+    await page.getByRole("tab", { name: "Step 1 current" })
+  ).toBeVisible();
+
+  await expect(await page.getByRole("tab", { name: "Step 2" })).toBeVisible();
+
+  await expect(
+    await page.getByRole("tab", { name: "Final Step" })
+  ).toBeVisible();
+
+  await expect(
+    await page.getByRole("heading", { name: "SIGN UP" })
+  ).toBeVisible();
+
+  await expect(
+    await page.getByRole("textbox", { name: "Email" })
+  ).toBeVisible();
+
+  await expect(
+    await page.getByRole("textbox", { name: "Username" })
+  ).toBeVisible();
+
+  await expect(
+    await page.getByRole("textbox", { name: "Password" })
+  ).toBeVisible();
+
+  await expect(
+    await page.getByText("Already have an account? Log")
+  ).toBeVisible();
+}
+
+export async function goToLoginForm(page: Page) {
+  await page.getByRole("link", { name: "Log in" }).click();
+  await expect(
+    await page.getByRole("heading", { name: "Welcome Back!" })
+  ).toBeVisible();
+  await expect(await page.getByRole("button", { name: "Login" })).toBeVisible();
+}
+
+export async function checkElements2StepRegistration(page: Page) {
+  await expect(
+    await page.getByRole("combobox", { name: "Title" })
+  ).toBeVisible();
+  await expect(
+    await page.getByRole("textbox", { name: "First name" })
+  ).toBeVisible();
+  await expect(
+    await page.getByRole("textbox", { name: "Last name" })
+  ).toBeVisible();
+  await expect(
+    await page.getByRole("combobox", { name: "Date of birth" })
+  ).toBeVisible();
+  await expect(await page.getByRole("combobox", { name: "MM" })).toBeVisible();
+  await expect(
+    await page.getByRole("combobox", { name: "DD", exact: true })
+  ).toBeVisible();
+  await expect(
+    await page.getByRole("textbox", { name: "Phone number" })
+  ).toBeVisible();
+  await expect(
+    await page.locator("div").filter({ hasText: /^Country$/ })
+  ).toBeVisible();
+  await expect(
+    await page.locator("div").filter({ hasText: /^Currency$/ })
+  ).toBeVisible();
+  await expect(
+    await page.getByRole("combobox", { name: "Address" })
+  ).toBeVisible();
+  await expect(
+    await page.getByRole("textbox", { name: "Apartment, suite, etc. (" })
+  ).toBeVisible();
+  await expect(await page.getByRole("textbox", { name: "City" })).toBeVisible();
+  await expect(
+    await page.getByRole("textbox", { name: "ZIP code" })
+  ).toBeVisible();
+  await expect(
+    await page.getByRole("button", { name: "Go back" })
+  ).toBeVisible();
+
+  await expect(
+    await page.getByRole("tab", { name: "Step 2 current" })
+  ).toBeVisible();
+  await expect(
+    await page.getByRole("tab", { name: "Final Step" })
+  ).toBeVisible();
+  await expect(
+    await page.getByRole("tab", { name: "Step 1 completed" })
+  ).toBeVisible();
+}

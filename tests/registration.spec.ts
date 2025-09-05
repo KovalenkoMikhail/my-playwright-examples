@@ -6,7 +6,7 @@ import * as registrationPage from "../pages/registrationPage";
 
 import { beforeEach } from "node:test";
 
-test.describe("Registration form", () => {
+test.describe("Registration form // Positive cases", () => {
   test.use({
     storageState: getStorageStatePath(undefined, undefined, undefined, "root"),
   });
@@ -14,30 +14,50 @@ test.describe("Registration form", () => {
   test.beforeEach(async ({ page }) => {
     await homepage.openHomePage(page);
     await cookies.acceptCookiesIfVisible(page);
+    await registrationPage.goToRegistration(page);
   });
 
   test("Registration without Welcome Offers", async ({ page }) => {
-    await registrationPage.goToRegistration(page);
     await registrationPage.firstRegistrationStep(page);
     await registrationPage.secondRegistrationStep(page);
     await registrationPage.thirdRegistrationStep(page);
   });
-  test("Create account with empty input // 1 step", async ({ page }) => {
+});
+
+test.describe("Registration form // Negative cases", () => {
+  test.use({
+    storageState: getStorageStatePath(undefined, undefined, undefined, "root"),
+  });
+
+  test.beforeEach(async ({ page }) => {
+    await homepage.openHomePage(page);
+    await cookies.acceptCookiesIfVisible(page);
     await registrationPage.goToRegistration(page);
+  });
+
+  test("Create account with empty input // 1 step", async ({ page }) => {
     await registrationPage.createAccountWithEmptyInputFirstStep(page);
   });
 
   test("Create account without pass // 1 step", async ({ page }) => {
-    await registrationPage.goToRegistration(page);
     await registrationPage.createAccWithoutPass(page);
   });
 
   test("Create account with pass equal email // 1 step", async ({ page }) => {
-    await registrationPage.goToRegistration(page);
     await registrationPage.createWithPassEqualEmail(page);
   });
-  // test("Create account without email // 1 step", async ({ page }) => {
-  //   await registrationPage.goToRegistration(page);
-  //   await registrationPage.createAccWithoutPass(page);
-  // });
+
+  test("Check elements // 1 step", async ({ page }) => {
+    await registrationPage.showPass(page);
+    await registrationPage.elements1StepRegistration(page);
+  });
+
+  test("Go to login from registration form // 1 step", async ({ page }) => {
+    await registrationPage.goToLoginForm(page);
+  });
+
+  test("Check elements // 2 step", async ({ page }) => {
+    await registrationPage.firstRegistrationStep(page);
+    await registrationPage.checkElements2StepRegistration(page);
+  });
 });

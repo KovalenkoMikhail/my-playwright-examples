@@ -22,6 +22,31 @@ test.describe("Registration form // Positive cases", () => {
     await registrationPage.secondRegistrationStep(page);
     await registrationPage.thirdRegistrationStep(page);
   });
+
+  test("Button go back", async ({ page }) => {
+    await registrationPage.firstRegistrationStep(page);
+    await registrationPage.secondRegistrationStep(page);
+    await registrationPage.thirdRegistrationStep(page);
+    await registrationPage.goBackBtn(page);
+  });
+
+  test("Validate elements // cancelRegistration modal", async ({ page }) => {
+    await registrationPage.cancelRegistrationModal(page);
+  });
+
+  test("Cancel registration", async ({ page }) => {
+    await registrationPage.cancelRegistration(page);
+  });
+
+  test("Continue registrations //cancelRegistration modal", async ({
+    page,
+  }) => {
+    await registrationPage.cancelRegistration(page);
+  });
+
+  test("Go to main page by Logo", async ({ page }) => {
+    await registrationPage.clickToLogo(page);
+  });
 });
 
 test.describe("Registration form // Negative cases", () => {
@@ -59,5 +84,10 @@ test.describe("Registration form // Negative cases", () => {
   test("Check elements // 2 step", async ({ page }) => {
     await registrationPage.firstRegistrationStep(page);
     await registrationPage.checkElements2StepRegistration(page);
+  });
+
+  test("Validation empty input // 2 step", async ({ page }) => {
+    await registrationPage.firstRegistrationStep(page);
+    await registrationPage.createAccountWithEmptyInputSecondStep(page);
   });
 });

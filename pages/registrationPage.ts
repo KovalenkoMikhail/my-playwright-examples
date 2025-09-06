@@ -329,3 +329,96 @@ export async function checkElements2StepRegistration(page: Page) {
     await page.getByRole("tab", { name: "Step 1 completed" })
   ).toBeVisible();
 }
+
+export async function createAccountWithEmptyInputSecondStep(page: Page) {
+  await page.getByRole("button", { name: "Continue" }).click();
+
+  await expect(
+    await page.locator("#gender").getByText("This field is required.")
+  ).toBeVisible();
+
+  await expect(
+    await page.locator("#firstName").getByText("This field is required.")
+  ).toBeVisible();
+
+  await expect(
+    await page.locator("#lastName").getByText("This field is required.")
+  ).toBeVisible();
+
+  await expect(await page.getByText("Please select valid date.")).toBeVisible();
+
+  await expect(await page.getByText("Please enter valid phone")).toBeVisible();
+
+  await expect(
+    await page.locator("#city").getByText("This field should have at")
+  ).toBeVisible();
+  await expect(
+    await page
+      .locator("#addressAutocomplete")
+      .getByText("This field should have at")
+  ).toBeVisible();
+
+  await expect(await page.getByText("ZIP code should be 4-9")).toBeVisible();
+}
+
+export async function goBackBtn(page: Page) {
+  await expect(
+    await page.getByRole("tab", { name: "Final Step, Current" })
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Go back" }).click();
+
+  await expect(
+    await page.getByRole("tab", { name: "Step 2 current" })
+  ).toBeVisible();
+
+  await page.getByRole("button", { name: "Go back" }).click();
+
+  await expect(
+    await page.getByRole("tab", { name: "Step 1 current" })
+  ).toBeVisible();
+}
+export async function cancelRegistrationModal(page: Page) {
+  const cancelBtn = await page.getByRole("button", { name: "Cancel" });
+
+  if (await cancelBtn.isVisible()) {
+    await cancelBtn.click();
+  } else {
+    await page.getByTestId("ArrowBackIcon").click();
+  }
+
+  await expect(
+    await page.getByRole("heading", { name: "WAIT A MOMENT..." })
+  ).toBeVisible();
+
+  await expect(
+    await page.getByRole("button", { name: "Continue registration" })
+  ).toBeVisible();
+
+  await expect(
+    await page.getByRole("button", { name: "Not now" })
+  ).toBeVisible();
+}
+
+export async function cancelRegistration(page: Page) {
+  const cancelBtn = await page.getByRole("button", { name: "Cancel" });
+
+  if (await cancelBtn.isVisible()) {
+    await cancelBtn.click();
+  } else {
+    await page.getByTestId("ArrowBackIcon").click();
+  }
+  await page.getByText("dialog Chat with usJoin").isVisible();
+
+  await page.getByRole("button", { name: "Not now" }).click();
+
+  await expect(await page.getByText("dialog Chat with usJoin")).toBeHidden();
+  await expect(
+    await page.getByRole("navigation", { name: "Main navigation" })
+  ).toBeVisible();
+}
+export async function clickToLogo(page: Page) {
+  await page.getByRole("link", { name: "Hopa Logo" }).click();
+  await expect(
+    await page.getByRole("navigation", { name: "Main navigation" })
+  ).toBeVisible();
+}

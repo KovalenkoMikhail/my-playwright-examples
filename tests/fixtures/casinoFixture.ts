@@ -1,5 +1,5 @@
 import { test as base } from "@playwright/test";
-import { CasinoPage } from "../casinoPage";
+import { CasinoPage } from "../../pages/casinoPage";
 import { getStorageStatePath } from "../../utils/getCredentials";
 
 type MyFixtures = {

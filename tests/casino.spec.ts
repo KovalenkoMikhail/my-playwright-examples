@@ -1,5 +1,5 @@
 // import { test } from "@playwright/test";
-import { test } from "../pages/fixtures/casinoFixture";
+import { test } from "./fixtures/casinoFixture";
 import * as cookies from "../modals/components/cookies";
 import { getStorageStatePath } from "../utils/getCredentials";
 

@@ -26,30 +26,4 @@ test.describe("guest context (root storageState)", () => {
     await homepage.openHomePage(page);
     await mainPage.headerOpenCasino();
   });
-
-  // test("header", async ({ page }) => {
-  //   const casinoPage = new CasinoPage(page);
-  //   await homepage.openHomePage(page);
-  //   await casinoPage.checkSubNavigation();
-  // });
 });
-
-// TODO
-// test.describe("logged-in context (auth storageState)", () => {
-//   test.use({
-//     storageState: getStorageStatePath(undefined, undefined, undefined, "auth"),
-//   });
-
-//   test("header22", async ({ page }) => {
-//     await homepage.openHomePage(page);
-
-//     // await page.context().storageState({ path: 'auth.json' });
-//   });
-// });
-
-// test("login user and save storageState", async ({ page }) => {
-//     await homepage.openHomePage(page);
-//     await cookies.acceptCookiesIfVisible(page);
-//     await auth.login(page);
-
-//   });

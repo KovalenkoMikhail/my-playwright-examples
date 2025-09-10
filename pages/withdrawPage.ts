@@ -1,15 +1,6 @@
 import { Page, expect } from "@playwright/test";
 
 export async function changePassword(page: Page) {
-  const profileButton = page.getByRole("button", { name: "Profile menu" });
-
-  if (await profileButton.isVisible()) {
-    await profileButton.click();
-  } else {
-    await page.locator(".sc-377eb44-0 > div:nth-child(3)").click();
-  }
-
-  await page.getByRole("button", { name: "Withdraw" }).click();
 
   const personalDetailsButton = page.getByRole("button", {
     name: "Personal Details",
@@ -59,31 +50,6 @@ export async function changePassword(page: Page) {
 }
 
 export async function checkHideButton(page: Page) {
-  const profileButton = page.getByRole("button", { name: "Profile menu" });
-
-  if (await profileButton.isVisible()) {
-    await profileButton.click();
-  } else {
-    await page.locator(".sc-377eb44-0 > div:nth-child(3)").click();
-  }
-
-  await page.getByRole("button", { name: "Withdraw" }).click();
-
-  const personalDetailsButton = page.getByRole("button", {
-    name: "Personal Details",
-  });
-
-  const emptyButton = page
-    .getByRole("button")
-    .filter({ hasText: /^$/ })
-    .first();
-
-  if (await emptyButton.isVisible()) {
-    await emptyButton.click();
-    await personalDetailsButton.click();
-  } else {
-    await personalDetailsButton.click();
-  }
 
   await page.getByRole("button", { name: "Change" }).click();
 

@@ -4,7 +4,7 @@
 #     branches: [ main ]
 #   pull_request:
 #     branches: [ main ]
-#     schedule:
+#   schedule:
 #       - cron: '0 10 * * *' # Every day at 10:00 UTC
 # jobs:
 #   test:
@@ -27,3 +27,4 @@
 #         name: playwright-report
 #         path: playwright-report/
 #         retention-days: 30
+# >>>>>>> recovered-feature-branch

@@ -1,18 +1,36 @@
 import { test, expect } from '@playwright/test';
+// import AdvPage from '../pages/rozetka/advPage';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+// let mainPage: MainPage;
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+// to refactor
+test.beforeEach(async ({ page }) => {
+  // await page.goto('https://ppd01-www.hopa.com/en-ca');
+  await page.goto('https://testautomationpractice.blogspot.com/');
+ 
 });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+// TESTS
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+test('Open adv', async ({ page }) => {
+  await page.getByRole('button', { name: 'Confirmation Alert' }).click();
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+  page.on('dialog', dialog => console.log(dialog.message()));
+  await page.getByRole('button').click(); 
+
 });
+
+// test('add adv to basket', async({ page }) => {
+  
+//   await advPage.addAdvToBasket();
+
+// });
+// test('check modal of basket', async({ page }) => {
+//   await advPage.addAdvToBasket();
+
+
+// });
+// test('', async({ page }) => {
+
+
+// });

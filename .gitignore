@@ -5,3 +5,29 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# Env
+.env
+.env.*
+
+# Editors/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Builds/TypeScript
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# Coverage
+coverage/
+# Ignore Playwright workflow
+playwright.yml

@@ -1,8 +1,7 @@
-import { test } from "@playwright/test";
 import * as homepage from "../modals/homepage";
 import * as cookies from "../modals/components/cookies";
 import { getStorageStatePath } from "../utils/getCredentials";
-import * as withdrawPage from "../pages/withdrawPage";
+import { test } from "./fixtures/withdrawFixture";
 
 import { beforeEach } from "node:test";
 
@@ -11,25 +10,25 @@ test.describe("Withdraw Personal Details", () => {
     storageState: getStorageStatePath(undefined, undefined, undefined, "auth"),
   });
 
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ withdrawPage, page }) => {
     await homepage.openHomePage(page);
     await cookies.acceptCookiesIfVisible(page);
-    await withdrawPage.goToPersonalDetails(page);
+    await withdrawPage.goToPersonalDetails();
   });
 
-  test("Change Password", async ({ page }) => {
-    await withdrawPage.changePassword(page);
+  test("Change Password", async ({ withdrawPage }) => {
+    await withdrawPage.changePassword();
   });
 
-  test("Check Hide Button", async ({ page }) => {
-    await withdrawPage.checkHideButton(page);
+  test("Check Hide Button", async ({ withdrawPage }) => {
+    await withdrawPage.checkHideButton();
   });
-  test("Close modal CHANGE PASSWORD", async ({ page }) => {
-    await withdrawPage.openModalChangePassword(page);
-    await withdrawPage.closeModalChangePassword(page);
+  test("Close modal CHANGE PASSWORD", async ({ withdrawPage }) => {
+    await withdrawPage.openModalChangePassword();
+    await withdrawPage.closeModalChangePassword();
   });
-  test("12 Personal Details check elements", async ({ page }) => {
-    await withdrawPage.elementsPersonalDetails(page);
+  test("12 Personal Details check elements", async ({ withdrawPage }) => {
+    await withdrawPage.elementsPersonalDetails();
   })
 
 });
@@ -38,46 +37,46 @@ test.describe("Withdraw Deposit", () => {
   test.use({
     storageState: getStorageStatePath(undefined, undefined, undefined, "auth"),
   });
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ withdrawPage, page }) => {
     await homepage.openHomePage(page);
     await cookies.acceptCookiesIfVisible(page);
-    await withdrawPage.goToDeposit(page);
+    await withdrawPage.goToDeposit();
 
   });
-    test("1 Payment method Interac", async ({ page }) => {
+    test("1 Payment method Interac", async ({ withdrawPage }) => {
     
-    await withdrawPage.interacPayment(page);
+    await withdrawPage.interacPayment();
   });
-    test("2 Payment method Visa", async ({ page }) => {
-    await withdrawPage.visaPayment(page);
+    test("2 Payment method Visa", async ({ withdrawPage }) => {
+    await withdrawPage.visaPayment();
   });
-     test("3 Payment method Paysafecard", async ({ page }) => {
-      await withdrawPage.paysafecardPayment(page);
+     test("3 Payment method Paysafecard", async ({ withdrawPage }) => {
+      await withdrawPage.paysafecardPayment();
   });
-     test("4 Payment method CashToCode EVoucher", async ({ page }) => {
-    await withdrawPage.cashToCodeEVoucherPayment(page);
+     test("4 Payment method CashToCode EVoucher", async ({ withdrawPage }) => {
+    await withdrawPage.cashToCodeEVoucherPayment();
   });
-     test("5 Payment method JetonCash", async ({ page }) => {
-      await withdrawPage.jetonCashPayment(page);
+     test("5 Payment method JetonCash", async ({ withdrawPage }) => {
+      await withdrawPage.jetonCashPayment();
   });
-     test("6 Payment method LuxonPay", async ({ page }) => {
-      await withdrawPage.luxonPayPayment(page);
+     test("6 Payment method LuxonPay", async ({ withdrawPage }) => {
+      await withdrawPage.luxonPayPayment();
   });
-     test("7 Payment method Mastercard", async ({ page }) => {
-      await withdrawPage.mastercardPayment(page);
+     test("7 Payment method Mastercard", async ({ withdrawPage }) => {
+      await withdrawPage.mastercardPayment();
   });
-     test("8 Payment method MiFinity", async ({ page }) => {
-      await withdrawPage.miFinityPayment(page);
+     test("8 Payment method MiFinity", async ({ withdrawPage }) => {
+      await withdrawPage.miFinityPayment();
   });
-     test("9 Payment method MuchBetter", async ({ page }) => {
-      await withdrawPage.muchBetterPayment(page);
+     test("9 Payment method MuchBetter", async ({ withdrawPage }) => {
+      await withdrawPage.muchBetterPayment();
   });
-     test("10 Payment method Neosurf", async ({ page }) => {
-      await withdrawPage.neosurfPayment(page);
+     test("10 Payment method Neosurf", async ({ withdrawPage }) => {
+      await withdrawPage.neosurfPayment();
   });
-     test("11 Change payment method", async ({ page }) => {
-      await withdrawPage.interacPayment(page);
-      await withdrawPage.changePaymentMethod(page);
+     test("11 Change payment method", async ({ withdrawPage }) => {
+      await withdrawPage.neosurfPayment();
+      await withdrawPage.changePaymentMethod();
   });
 
 });

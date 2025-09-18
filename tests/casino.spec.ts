@@ -1,63 +1,64 @@
-import { test } from "@playwright/test";
-import * as homepage from "../modals/homepage";
+// import { test } from "@playwright/test";
+import { test } from "./fixtures/casinoFixture";
 import * as cookies from "../modals/components/cookies";
-import { getStorageStatePath } from "../utils/getCredentials";
-import * as casinoPage from "../pages/casinoPage";
 
-import { beforeEach } from "node:test";
+
+// let casinoPage: CasinoPage;
+
 
 test.describe("Casino // sub-navigation (without login )", () => {
-  test.use({
-    storageState: getStorageStatePath(undefined, undefined, undefined, "root"),
-  });
+  // test.use({
+  //   storageState: getStorageStatePath(undefined, undefined, undefined, "root"),
+  // });
 
-  test.beforeEach(async ({ page }) => {
-    await page.goto("/casino");
-  });
+  // test.beforeEach(async ({ casinoPage,page }) => {
+  //   await page.goto("/casino");
+  //   casinoPage = new CasinoPage(page);
+  // });
 
-  test("GoTo Popular // sub-navigation", async ({ page }) => {
+  test("GoTo Popular // sub-navigation", async ({ casinoPage, page }) => {
     await cookies.acceptCookiesIfVisible(page);
-    await casinoPage.subNavigationGoToPopular(page);
+    await casinoPage.goToPopular();
   });
 
-  test("GoTo Slots // sub-navigation", async ({ page }) => {
+  test("GoTo Slots // sub-navigation", async ({  casinoPage, page }) => {
     await cookies.acceptCookiesIfVisible(page);
-    await casinoPage.subNavigationGoToSlots(page);
+    await casinoPage.goToSlots();
   });
 
-  test("GoTo New // sub-navigation ", async ({ page }) => {
+  test("GoTo New // sub-navigation ", async ({  casinoPage, page }) => {
     await cookies.acceptCookiesIfVisible(page);
-    await casinoPage.subNavigationGoToNew(page);
+    await casinoPage.goToNew();
   });
 
-  test("GoTo Drops & Wins // sub-navigation ", async ({ page }) => {
+  test("GoTo Drops & Wins // sub-navigation ", async ({  casinoPage, page }) => {
     await cookies.acceptCookiesIfVisible(page);
-    await casinoPage.subNavigationGoToDropsAndWins(page);
+    await casinoPage.goToDropsAndWins();
   });
 
-  test("GoTo Jackpots // sub-navigation ", async ({ page }) => {
+  test("GoTo Jackpots // sub-navigation ", async ({  casinoPage, page }) => {
     await cookies.acceptCookiesIfVisible(page);
-    await casinoPage.subNavigationGoToJackpots(page);
+    await casinoPage.goToJackpots();
   });
 
-  test("GoTo Table Games // sub-navigation ", async ({ page }) => {
+  test("GoTo Table Games // sub-navigation ", async ({  casinoPage, page }) => {
     await cookies.acceptCookiesIfVisible(page);
-    await casinoPage.subNavigationGoToTableGames(page);
+    await casinoPage.goToTableGames();
   });
 
-  test("GoTo Let's Go Fishing // sub-navigation ", async ({ page }) => {
+  test("GoTo Let's Go Fishing // sub-navigation ", async ({  casinoPage, page }) => {
     await cookies.acceptCookiesIfVisible(page);
-    await casinoPage.subNavigationGoToLetsGoFishing(page);
+    await casinoPage.goToLetsGoFishing();
   });
 
-  test("GoTo Instant Wins // sub-navigation ", async ({ page }) => {
+  test("GoTo Instant Wins // sub-navigation ", async ({  casinoPage, page }) => {
     await cookies.acceptCookiesIfVisible(page);
-    await casinoPage.subNavigationGoToInstantWins(page);
+    await casinoPage.goToInstantWins();
   });
 
-  test("GoTo Lobby // sub-navigation ", async ({ page }) => {
+  test("GoTo Lobby // sub-navigation ", async ({  casinoPage, page }) => {
     await cookies.acceptCookiesIfVisible(page);
-    await casinoPage.subNavigationGoToInstantWins(page);
-    await casinoPage.subNavigationGoToLobby(page);
+    await casinoPage.goToInstantWins();
+    await casinoPage.goToLobby();
   });
 });

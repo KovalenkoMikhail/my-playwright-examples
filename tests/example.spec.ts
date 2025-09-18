@@ -19,18 +19,3 @@ test('Open adv', async ({ page }) => {
   await page.getByRole('button').click(); 
 
 });
-
-// test('add adv to basket', async({ page }) => {
-  
-//   await advPage.addAdvToBasket();
-
-// });
-// test('check modal of basket', async({ page }) => {
-//   await advPage.addAdvToBasket();
-
-
-// });
-// test('', async({ page }) => {
-
-
-// });

@@ -1,14 +1,20 @@
-import {test, expect} from "@playwright/test";
+import { test } from "./fixtures/gameFixture";
 import { getStorageStatePath } from "utils/getCredentials";
+import * as cookies from "../modals/components/cookies";
+// import * as hyperStarMultichasePage from "../pages/games/hyperStarMultichasePage";
 
 test.describe("iFrame first test", () => {
     test.use({
         storageState: getStorageStatePath(undefined, undefined, undefined, "auth"),
       });
-    test("iFrame1stTest", async ({page}) => {
-        await page.goto("https://ppd01-www.hopa.com/en-gb/play/miami-mayhem");
-        await page.waitForLoadState("networkidle");
-        const base_frame = page.frameLocator("game-iframe");
-        console.log("base_frame: ", base_frame);
+
+      test.beforeEach(async ({page}) => {
+        await page.goto("/play/hyper-star-multichase");
+        await cookies.acceptCookiesIfVisible(page);
+
+
+      })
+    test("iFrame1stTest", async ({hyperStarMultichasePage, page}) => {
+       await hyperStarMultichasePage.clickToContinue();
     })
 })

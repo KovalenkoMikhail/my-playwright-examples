@@ -32,7 +32,7 @@ export async function apiLoginAndSaveStorage(request: APIRequestContext) {
       {
         name: "sessionId",
         value: loginData.sessionid,
-        domain: "ppd01-www.hopa.com",
+        domain: "www.hopa.com",
         path: "/",
         expires: -1,
         httpOnly: false,
@@ -42,7 +42,7 @@ export async function apiLoginAndSaveStorage(request: APIRequestContext) {
     ],
     origins: [
       {
-        origin: "https://ppd01-www.hopa.com",
+        origin: "https://www.hopa.com",
         localStorage: [
           { name: "userid", value: String(loginData.userid) },
           { name: "username", value: loginData.username },

@@ -5,7 +5,7 @@ import { TARGET_ENV, TARGET_BRAND, TARGET_JURISDICTION, resolveBasicAuth } from 
 // Create storage state by navigating with httpCredentials and landing on the closed site
 export default async function globalSetup(config: FullConfig) {
 	const storagePath = getStorageStatePath(TARGET_ENV, TARGET_BRAND, TARGET_JURISDICTION);
-	const baseURL = process.env.BASE_URL || "https://ppd01-www.hopa.com/en-ca";
+	const baseURL = process.env.BASE_URL || "https://www.hopa.com/en-ca";
 
 	const context = await chromium.launchPersistentContext("", {
 		headless: true,

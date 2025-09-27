@@ -1,20 +1,18 @@
 // import { test } from "@playwright/test";
 import { test } from "./fixtures/casinoFixture";
 import * as cookies from "../modals/components/cookies";
-
-
-// let casinoPage: CasinoPage;
-
+import { getStorageStatePath } from "../utils/getCredentials";
+import { CasinoPage } from "../pages/casinoPage";
 
 test.describe("Casino // sub-navigation (without login )", () => {
-  // test.use({
-  //   storageState: getStorageStatePath(undefined, undefined, undefined, "root"),
-  // });
+  test.use({
+    storageState: getStorageStatePath(undefined, undefined, undefined, "root"),
+  });
 
-  // test.beforeEach(async ({ casinoPage,page }) => {
-  //   await page.goto("/casino");
-  //   casinoPage = new CasinoPage(page);
-  // });
+  test.beforeEach(async ({ casinoPage, page }) => {
+    await page.goto("/casino");
+
+  });
 
   test("GoTo Popular // sub-navigation", async ({ casinoPage, page }) => {
     await cookies.acceptCookiesIfVisible(page);

@@ -1,4 +1,4 @@
-import { defineConfig, devices } from "@playwright/test";
+import { PlaywrightTestConfig } from "@playwright/test";
 import { resolveBasicAuth } from "./utils/constants";
 
 // Minimal IPv4 enforcement for VPNs blocking ::1
@@ -16,7 +16,7 @@ import { resolveBasicAuth } from "./utils/constants";
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-export default defineConfig({
+const config: PlaywrightTestConfig = {
   testDir: "./tests",
   testMatch: ["**/*.spec.ts"],
   /* Run tests in files in parallel */
@@ -28,11 +28,16 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [["html", { outputFolder: "playwright-report" }]],
+  reporter: [
+    ["list"],
+    ["html", { outputFolder: "playwright-report" }],
+    ["allure-playwright"],
+    ["junit", { outputFile: "test-results/junit.xml" }],
+  ],
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    baseURL: process.env.BASE_URL || "https://ppd01-www.hopa.com/en-ca",
+    baseURL: process.env.BASE_URL || "https://www.hopa.com/en-ca",
     ignoreHTTPSErrors: true,
     httpCredentials: resolveBasicAuth(),
     proxy:
@@ -50,17 +55,22 @@ export default defineConfig({
         "--host-resolver-rules=MAP localhost 127.0.0.1",
       ],
     },
-    trace: "on",
+    trace: "retain-on-failure",
+    video: "retain-on-failure",
+    screenshot: "only-on-failure",
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: "chromium",
-      use: {
-        ...devices["Desktop Chrome"],
-        viewport: { width: 414, height: 896 },
-      },
+      name: "Chrome",
+      use: { browserName: "chromium" },
+    },
+    {
+      name: "Firefox",
+      use: { browserName: "firefox" },
     },
   ],
-});
+};
+
+export default config;

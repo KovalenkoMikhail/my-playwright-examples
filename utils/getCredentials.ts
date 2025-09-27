@@ -16,22 +16,22 @@ export function getLoginData(): Credentials {
 	if (brand === "hopa") {
 		switch (jurisdiction) {
 			case "ukgc":
-				return { email: "preprodtesthopa47@proton.me", password: "tiliTILI123$" };
+				return { email: "test@test.me", password: "ThisTestPassword$" };
 			case "mga":
-				return { email: "preprodtesthopa47@proton.me", password: "tiliTILI123$" };
+				return { email: "test@test.me", password: "ThisTestPassword$" };
 		}
 	}
 
 	// Last resort: dev defaults (non-production only)
 	if ((process.env.ENV || "development") !== "production") {
-		return { email: "forvana-dev", password: "devFRV2025!" };
+		return { email: "test@test", password: "ThisTestPassword$" };
 	}
 
 	throw new Error("No credentials could be resolved for the current environment");
 }
 
 export function getStorageStatePath(env?: string, brand?: string, jurisdiction?: string, label?: string): string {
-	const e = (env || process.env.TARGET_ENV || "ppd01").toLowerCase();
+	const e = (env || process.env.TARGET_ENV || "pp").toLowerCase();
 	const b = (brand || process.env.TARGET_BRAND || "hopa").toLowerCase();
 	const j = (jurisdiction || process.env.TARGET_JURISDICTION || "mga").toLowerCase();
 	// For root login or auth login

@@ -2,19 +2,17 @@ import { APIRequestContext } from "@playwright/test";
 import fs from "fs";
 import path from "path";
 import { getStorageStatePath } from "../../utils/getCredentials";
+import { CONFIG } from '../../config/config';
 
 export async function apiLoginAndSaveStorage(request: APIRequestContext) {
-  const responseApi = await request.post(
-    "https://ppd01-www.hopa.com/api/auth/v2/login",
-    {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      data: {
-        email: "preprodtesthopa47@proton.me",
-        password: "tiliTILI123$",
-      },
+  const responseApi = await request.post(`${CONFIG.baseUrl}/api/auth/v2/login`, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    data: {
+      email: CONFIG.credentials.email,
+      password: CONFIG.credentials.password,
     }
   );
 

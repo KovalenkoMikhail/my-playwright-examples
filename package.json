@@ -6,7 +6,10 @@
   "scripts": {
     "ui": "npx playwright test --ui --ui-port=9323 --ui-host=127.0.0.1",
     "proxy": "tsx proxy/proxy-server.ts",
-    "ui:proxy": "npm-run-all --parallel proxy ui"
+    "ui:proxy": "npm-run-all --parallel proxy ui",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report"
   },
   "keywords": [],
   "author": "",
@@ -15,12 +18,12 @@
     "@playwright/test": "^1.55.1",
     "@types/node": "^24.3.0",
     "allure-playwright": "^3.4.1",
+    "dotenv": "^17.2.2",
     "express": "^4.19.2",
     "http-proxy-middleware": "^3.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.1",
     "npm-run-all": "^4.1.5",
     "tsx": "^4.19.2"
-  },
-  "dependencies": {
-    "dotenv": "^17.2.1"
   }
 }

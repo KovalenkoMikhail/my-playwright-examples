@@ -14,7 +14,7 @@ export async function apiLoginAndSaveStorage(request: APIRequestContext) {
       email: CONFIG.credentials.email,
       password: CONFIG.credentials.password,
     }
-  );
+});
 
   // Добавим проверку ответа
   if (!responseApi.ok()) {

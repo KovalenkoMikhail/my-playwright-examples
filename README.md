@@ -67,10 +67,6 @@ npx playwright test --ui
 - `tsconfig.json`: TypeScript config
 - `config/environment.ts`: Environment variables
 
-## 🤝 Contributing
-
-Fork, create a feature branch, and open a pull request.
-
 ## 📄 License
 
 MIT License

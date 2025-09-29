@@ -2,7 +2,7 @@
 
 # my-playwright-examples
 
-End-to-end and API test automation for Hopa Casino using [Playwright](https://playwright.dev/) and [TypeScript](https://www.typescriptlang.org/).
+End-to-end and API test automation for Casino using [Playwright](https://playwright.dev/) and [TypeScript](https://www.typescriptlang.org/).
 
 **Tech stack:** Playwright v1.55.1 · TypeScript v5.2+ (TS 22+) 
 

@@ -1,60 +1,76 @@
-# Playwright Test Automation Project
 
-## Overview
 
-Test automation project using Playwright for Hopa Casino website.
+# my-playwright-examples
 
-## Prerequisites
+End-to-end and API test automation for Hopa Casino using [Playwright](https://playwright.dev/) and [TypeScript](https://www.typescriptlang.org/).
 
-- Node.js 14 or higher
-- npm
+**Tech stack:** Playwright v1.55.1 · TypeScript v5.2+ (TS 22+) 
 
-## Setup
+## 🚀 Quick Start
 
-1. Clone the repository
-2. Install dependencies:
-
-```bash
+```powershell
+git clone https://github.com/KovalenkoMikhail/my-playwright-examples.git
+cd my-playwright-examples
 npm install
-```
-
-3. Create `.env` file with required credentials (see `.env.example`)
-4. Install Playwright browsers:
-
-```bash
 npx playwright install
-```
-
-## Running Tests
-
-```bash
-# Run all tests
 npx playwright test
-
-# Run specific test file
-npx playwright test casino.spec.ts
-
-# Run in UI mode
-npx playwright test --ui
 ```
 
-## Project Structure
+## 📁 Structure
 
 ```
-├── tests/          # Test specifications
-├── pages/          # Page Object Models
-├── api/            # API related tests and services
-├── fixtures/       # Test fixtures
-├── utils/          # Utility functions
-└── config/         # Configuration files
+api/            # API services & login helpers
+config/         # Config & environment files
+e2e/            # Example E2E specs
+modals/         # UI modals/components
+pages/          # Page Object Models (POM)
+proxy/          # Proxy server scripts
+tests/          # Main test suite (UI, API, connectivity)
+tests-examples/ # Demo/example specs
+utils/          # Utility functions
 ```
 
-## Environment Variables
+## 🧩 Key Concepts
 
-Create a `.env` file with the following variables:
+- **Page Object Model (POM):** Encapsulates page logic for maintainable tests (`pages/`).
+- **Fixtures:** Shared setup/teardown for reusable test contexts (`tests/fixtures/`).
+- **API Login:** Fast authentication via API (`modals/components/apiLogin.ts`, `tests/apiLogin.spec.ts`).
+
+## ⚙️ Environment
+
+Create a `.env` file (see `.env.example`):
 
 ```
 TEST_EMAIL=your_test_email
 TEST_PASSWORD=your_test_password
 BASE_URL=your_base_url
 ```
+
+## 🏃 Running Tests
+
+Run all tests:
+```powershell
+npx playwright test
+```
+Run a specific test:
+```powershell
+npx playwright test tests/login.spec.ts
+```
+Run in UI mode:
+```powershell
+npx playwright test --ui
+```
+
+## 🛠️ Configuration
+
+- `playwright.config.ts`: Playwright settings
+- `tsconfig.json`: TypeScript config
+- `config/environment.ts`: Environment variables
+
+## 🤝 Contributing
+
+Fork, create a feature branch, and open a pull request.
+
+## 📄 License
+
+MIT License
